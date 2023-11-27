@@ -1,0 +1,63 @@
+.menu-header{
+    background-color: #f3f3f3;
+    margin-top: 10px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 80px;
+    box-shadow: 5px 5px 24px rgb(49, 49, 49);
+    border-radius: 10px;
+}
+
+.headings{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Open Sans, Arial;
+    font-size: 20px;
+    font-weight: 800;
+    color: black;
+    margin: 0px;
+}
+
+.heading-menu,
+.heading-deals{
+    font-family: 'Grandstander', cursive;
+    font-size: 40px;
+    font-weight: 800; 
+    border-width: 5px;
+    border: whitesmoke;
+    padding: 0px 20px 0px 20px;
+}
+
+.heading-menu{
+    color: red;
+}
+
+.heading-deals{
+    color: rgb(24, 18, 18);
+}
+
+.btn-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+}
+
+.pizza-btn,
+.sides-btn,
+.desserts-btn,
+.drinks-btn {
+    padding: 12px;
+    box-shadow: 5px 5px 24px rgb(49, 49, 49);
+    border-width: 10px;
+    background-color: #EAEF0A;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 22px;
+    border-radius: 8px;
+    margin: 20px;
+}
