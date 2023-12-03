@@ -1,10 +1,9 @@
 body{
     margin: 0;
     padding-top: 80px;
-    padding-left: 80px;
-    padding-right: 64px;
     background-color: rgb(248, 248, 248);
 }
+
 
 .header{
     display: flex;
@@ -62,6 +61,7 @@ body{
     opacity: 50%;
     transition: opacity 1.15s;
     margin-left: 20px;
+    text-decoration: none;
 }
 
 .deals:hover{
@@ -72,7 +72,26 @@ body{
 /* filters */ 
 
 .filters{
-    max-width: 300px;
+    width: 100%;
+    background-color: #b7b925;
+    height: 70px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 1;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.filters a{
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: black;
+    padding: 40px;
+    font-weight: 700;
 }
 .btn-container{
     display: flex;
@@ -86,7 +105,9 @@ body{
     column-gap: 30px;
     row-gap: 40px;
     margin-bottom: 100px;
-    margin-top: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 100px;
     @media (min-width: 600px) {
         grid-template-columns: 1fr 1fr 1fr; /* Adjust for medium screens */
     }
