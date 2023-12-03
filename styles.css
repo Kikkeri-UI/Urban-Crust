@@ -1,9 +1,13 @@
 /* styles.css */
 /* Add your styling for the header, navigation, and content area */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+    font-size: 16px;
+}
+
+@media (max-width: 800px) {
+    body {
+        font-size: 14px;
+    }
 }
 
 
