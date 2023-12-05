@@ -1,3 +1,4 @@
+
 const menu =[
     {
         id: 1,
@@ -37,7 +38,7 @@ const menu =[
         category: 'Pizza',
         price: '£10.99',
         ingredients: 'Ham | Pineapple | Cheese',
-        img: './Icons/hawaiian.webp',
+        img: './Icons/four.webp',
     },
     {
         id: 6,
@@ -79,36 +80,154 @@ const menu =[
         ingredients: 'Broccoli | Mushrooms | Black olives | Tomatoes | Cheese',
         img: './Icons/supreme.webp',
     },
-
 ]
+const sides = [
+    {
+        id: 11,
+        title: 'Garlic Bread',
+        category: 'Sides',
+        price: '£4.99',
+        ingredients: 'cheesy garlic bread',
+        img: './Icons/garlic-bread.webp',
+    },
+    {
+        id: 12,
+        title: 'Cheese doughballs',
+        category: 'Sides',
+        price: '£6.99',
+        ingredients: 'doughballs loaded with cheese',
+        img: './Icons/cheese-doughball.webp',
+    },
+    {
+        id: 13,
+        title: 'Pepperoni doughballs',
+        category: 'Sides',
+        price: '£6.99',
+        ingredients: 'doughballs loaded with cheese and pepperoni',
+        img: './Icons/pepperoni-doughball.webp',
+    },
+    {
+        id: 14,
+        title: 'Loaded Fries Cheese',
+        category: 'Sides',
+        price: '£5.99',
+        ingredients: 'Crispy fries loaded with cheese',
+        img: './Icons/lfries-cheese.webp',
+    }
+    // Add more side items as needed
+];
 
-// counter
+const desserts = [
+    {
+        id: 21,
+        title: 'Chocolate cookie',
+        category: 'Desserts',
+        price: '£7.99',
+        ingredients: 'Rich chocolate brownie with nuts',
+        img: './Icons/cookie.webp',
+    },
+    {
+        id: 22,
+        title: 'Strawberry Cheesecake',
+        category: 'Desserts',
+        price: '£8.99',
+        ingredients: 'Classic New York-style cheesecake',
+        img: './Icons/cheesecake-icecream.webp',
+    },
+    {
+        id: 23,
+        title: 'Choco lava cake',
+        category: 'Desserts',
+        price: '£8.99',
+        ingredients: 'Lava of chocoloate awaits you',
+        img: './Icons/cheesecake-icecream.webp',
+    },
+    {
+        id: 24,
+        title: 'Death by Caramel',
+        category: 'Desserts',
+        price: '£8.99',
+        ingredients: 'Classic New York-style cheesecake',
+        img: './Icons/cheesecake-icecream.webp',
+    },
+    
+];
 
-const incrementBtn = document.getElementById('increment-btn');
-const decrementBtn = document.getElementById('decrement-btn');
-const counterValue = document.getElementById('counter-value');
-const priceValue = document.getElementById('price');
+const drinks = [
+    {
+        id: 31,
+        title: 'Cola',
+        category: 'Drinks',
+        price: '£2.99',
+        ingredients: 'Classic cola beverage',
+        img: './Icons/cola.webp',
+    },
+    {
+        id: 32,
+        title: 'Orange Juice',
+        category: 'Drinks',
+        price: '£3.99',
+        ingredients: 'Freshly squeezed orange juice',
+        img: './Icons/orange-juice.webp',
+    },
+    // Add more drink items as needed
+];
 
-let counter = 1;
-let price = 1;
+const menuGrid = document.querySelector('.menu-grid');
 
-incrementBtn.addEventListener('click',()=>{
-    counter++;
-    counterValue.innerHTML = counter;
-    price = counter * 10.99;
-    priceValue.innerHTML = price;
+window.addEventListener('DOMContentLoaded',()=>{
+    displayMenu(menu);
+    console.log('called');
 })
 
-decrementBtn.addEventListener('click',()=>{
-    if(counter!==0){
-        counter--;
-    }
-    else{
-        counter = 0;
-    }
-    counterValue.innerHTML = counter;
-    price = counter * 10.99;
-    priceValue.innerHTML = price;
+const sidesFilter = document.getElementById('filter-sides');
+const pizzaFilter = document.getElementById('filter-pizza');
+const dessertFilter = document.getElementById('filter-desserts');
+const drinksFIlter = document.getElementById('filter-drinks');
+
+pizzaFilter.addEventListener('click',()=>{
+    displayMenu(menu);
 })
 
+sidesFilter.addEventListener('click',()=>{
+    displayMenu(sides);
+})
 
+dessertFilter.addEventListener('click',()=>{
+    displayMenu(desserts);
+})
+
+drinksFIlter.addEventListener('click',()=>{
+    displayMenu(drinks);
+})
+
+function displayMenu(menuItem){
+    let displayMenuItems = menuItem.map((item,index)=>{
+        const uniqueId = `item-${index}`;
+        console.log(uniqueId);
+        return `<div class="container">
+        <div class="menu-image-container">
+            <img src="${item.img}" class="menu-img">
+        </div>
+        <div class="menu-info-container">
+            <div class="menu-title-desc">
+                <h2 class="menu-title">${item.title}</h2>
+                <p class="menu-desc">${item.ingredients}</p>
+            </div>
+            <div class="counter-price">
+                <div class="counter">
+                    <button id="increment">+</button>
+                    <div id="counterValue">0</div>
+                    <button id="decrement">-</button>
+                </div>
+                <div class="price">
+                    <h3 style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
+                </div>
+            </div>
+            <button class="cart-btn">Add to cart</button>
+        </div>
+    </div>`;
+    })
+    displayMenuItems = displayMenuItems.join('');
+    menuGrid.innerHTML = displayMenuItems;
+}
