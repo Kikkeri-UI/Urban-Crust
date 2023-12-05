@@ -142,18 +142,22 @@ body{
     width: 100%;
 }
 .menu-info-container{
-    background-color: #f6f6f6;
+    background-color: #C9EAFB;
     box-shadow: 0px 4px 8px rgb(63, 63, 63);
 }
 .menu-title-desc{
     font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-weight: 400;
-    margin-left: 5px;
+    padding-top: 20px;
+    padding-left: 10px;
+    
 }
 .menu-title{
     margin: 0; 
-    padding-top: 8px;
-    font-size: 16px !important;
+    
+    font-family: Roboto;
+    font-size: 18px !important;
+    font-weight: 700;
     margin-left: 5px;
     font-size: 16px;
 }
@@ -178,25 +182,28 @@ body{
 
 #increment,
 #decrement {
-    height: 25px;
+    height: 30px;
     width: 60px;
     padding: 0 6px;
     border-radius: 2px;
     font-size: 20px;
-    background-color: #2e8d46;
-    border: 2px solid #2e8d46;
-    color: white;
+    font-weight: bolder;
+    background-color: #C8DADE;
+    border: 2px solid #030303;
+    color: black;
     margin: 20px;
-}
-#increment{
     margin-left: 10px;
+    border-radius: 4px;
 }
+/* #increment{
+    margin-left: 10px;
+} */
 
 #counterValue {
-    height: 25px;
+    height: 30px;
     min-width: 70px;
     border-radius: 6px;
-    background-color: rgba(255, 0, 0, 0.187);
+    background-color: #C8DADE;
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -211,7 +218,7 @@ body{
     font-family: Grandstander;
     font-weight: 700;
     font-size: 16px;
-    background-color: #EAEF0A;
+    background-color: #E2730C;
     color: black;
     border: 2px solid black;
     cursor: pointer;
