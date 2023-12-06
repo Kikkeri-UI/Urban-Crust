@@ -177,8 +177,30 @@ const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded',()=>{
     displayMenu(menu);
-    console.log('called');
+    
+
+    
 })
+function addToCart(){
+    const cartButtons = document.querySelectorAll('.cart-btn');
+    cartButtons.forEach((cartBtn)=>{
+        cartBtn.addEventListener('click',(e)=>{
+            const itemId = e.target.dataset.id;
+            console.log(itemId);
+            let selectedItem;
+            switch(true){
+                case itemId <11 :  selectedItem = menu.find(item => item.id.toString() === itemId);
+                break;
+                case itemId > 10 && itemId < 15 :  selectedItem = sides.find(item => item.id.toString() === itemId);
+                break;
+                case itemId > 20 && itemId < 25 : selectedItem = desserts.find(item => item.id.toString() === itemId);
+                break;
+                case itemId > 30 && itemId < 33 : selectedItem = drinks.find(item => item.id.toString() === itemId);
+            }
+            console.log(selectedItem);
+        })
+    })
+}
 
 const sidesFilter = document.getElementById('filter-sides');
 const pizzaFilter = document.getElementById('filter-pizza');
@@ -201,10 +223,25 @@ drinksFIlter.addEventListener('click',()=>{
     displayMenu(drinks);
 })
 
+
+const decrementbtn = document.querySelectorAll('.decrement');
+const counterValue = document.querySelectorAll('.counterValue');
+const itemCounts = {};
+
+function updateCount(){
+    const incrementBtn = document.querySelectorAll('.increment');
+    incrementBtn.forEach((btn,index)=>{
+        btn.addEventListener('click',(e)=>{
+            const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
+            console.log(itemId);
+        })
+    })
+}
+
+
 function displayMenu(menuItem){
     let displayMenuItems = menuItem.map((item,index)=>{
         const uniqueId = `item-${index}`;
-        console.log(uniqueId);
         return `<div class="container">
         <div class="menu-image-container">
             <img src="${item.img}" class="menu-img">
@@ -216,18 +253,20 @@ function displayMenu(menuItem){
             </div>
             <div class="counter-price">
                 <div class="counter">
-                    <button id="increment">+</button>
-                    <div id="counterValue">0</div>
-                    <button id="decrement">-</button>
+                    <button class="increment">+</button>
+                    <div class="counterValue">0</div>
+                    <button class="decrement">-</button>
                 </div>
                 <div class="price">
                     <h3 style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
                 </div>
             </div>
-            <button class="cart-btn">Add to cart</button>
+            <button class="cart-btn" data-id="${item.id}">Add to cart</button>
         </div>
     </div>`;
     })
     displayMenuItems = displayMenuItems.join('');
     menuGrid.innerHTML = displayMenuItems;
+    addToCart();
+    
 }

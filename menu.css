@@ -180,8 +180,8 @@ body{
     align-items: center;
 }
 
-#increment,
-#decrement {
+.increment,
+.decrement {
     height: 30px;
     width: 60px;
     padding: 0 6px;
@@ -199,7 +199,7 @@ body{
     margin-left: 10px;
 } */
 
-#counterValue {
+.counterValue {
     height: 30px;
     min-width: 70px;
     border-radius: 6px;
