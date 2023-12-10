@@ -1,5 +1,5 @@
 
-const menu =[
+const pizzas =[
     {
         id: 1,
         title: 'Pepproni Passion',
@@ -180,7 +180,7 @@ let disabled = false;
 const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded',()=>{
-    displayMenu(menu);
+    displayMenu(pizzas);
     
     
 })
@@ -192,7 +192,7 @@ function addToCart(){
             console.log(itemId);
             let selectedItem;
             switch(true){
-                case itemId <11 :  selectedItem = menu.find(item => item.id.toString() === itemId);
+                case itemId <11 :  selectedItem = pizzas.find(item => item.id.toString() === itemId);
                 break;
                 case itemId > 10 && itemId < 15 :  selectedItem = sides.find(item => item.id.toString() === itemId);
                 break;
@@ -220,7 +220,7 @@ const dessertFilter = document.getElementById('filter-desserts');
 const drinksFIlter = document.getElementById('filter-drinks');
 
 pizzaFilter.addEventListener('click',()=>{
-    displayMenu(menu);
+    displayMenu(pizzas);
 })
 
 sidesFilter.addEventListener('click',()=>{
@@ -252,12 +252,13 @@ function updateCount(){
             decrement.disabled = false;
             itemCounts[itemId] = (itemCounts[itemId] || 0) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
-            
+            updatePrice(itemId, itemCounts[itemId], index);
+            debugger
         })
     })
     decrementbtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
-            console.log(e.target.classList);
+            console.log(e);
             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
@@ -270,8 +271,22 @@ function updateCount(){
                 itemCounts[itemId] = (itemCounts[itemId] || 0) - 1;
                 counterValue[index].textContent = itemCounts[itemId];
             }
+            updatePrice(itemId, itemCounts[itemId], index);
         })
     })
+}
+
+function updatePrice(itemId,quantity,index){
+    const item = findItemById(itemId);
+    console.log(item);
+    const priceElement = document.querySelector(`#price-${index}`);
+    const totalPrice = (item.price.slice(1)*quantity.toFixed(2));
+    priceElement.innerHTML = `£${totalPrice}`;
+}
+
+function findItemById(id){
+    const menu = [...pizzas, ...sides, ...desserts, ...drinks];
+    return menu.find((item)=>item.id == id);
 }
 
 function displayMenu(menuItem){
@@ -289,11 +304,11 @@ function displayMenu(menuItem){
             <div class="counter-price">
                 <div class="counter">
                     <button class="increment">+</button>
-                    <div class="counterValue">0</div>
+                    <div class="counterValue" id='counter-${index}'>0</div>
                     <button class="decrement">-</button>
                 </div>
                 <div class="price">
-                    <h3 style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
+                    <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
                 </div>
             </div>
             <button class="cart-btn" disabled data-id="${item.id}">Add to cart</button>
