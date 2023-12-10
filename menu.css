@@ -194,10 +194,19 @@ body{
     margin: 20px;
     margin-left: 10px;
     border-radius: 4px;
+    transition: background-color 0.5s ease-in-out;
+    cursor: pointer;
+    ;
 }
-/* #increment{
-    margin-left: 10px;
-} */
+.increment:active,
+.decrement:active{
+    background-color: #9fabad;
+    border: 0.5px solid;
+}
+
+.decrement:disabled{
+    opacity: 0.5;
+}
 
 .counterValue {
     height: 30px;

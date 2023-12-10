@@ -173,12 +173,15 @@ const drinks = [
     // Add more drink items as needed
 ];
 
+let cartItems = [];
+let count = 1;
+let disabled = false;
+
 const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded',()=>{
     displayMenu(menu);
     
-
     
 })
 function addToCart(){
@@ -197,7 +200,16 @@ function addToCart(){
                 break;
                 case itemId > 30 && itemId < 33 : selectedItem = drinks.find(item => item.id.toString() === itemId);
             }
-            console.log(selectedItem);
+            if (cartItems.length === 0){
+                cartItems = [selectedItem];
+            }
+            else {
+                let exisitingItem = cartItems.find((item)=>item.id === selectedItem.id);
+                if(!exisitingItem){
+                    cartItems.push(selectedItem);
+                }
+            }
+            console.log(cartItems);
         })
     })
 }
@@ -224,20 +236,43 @@ drinksFIlter.addEventListener('click',()=>{
 })
 
 
-const decrementbtn = document.querySelectorAll('.decrement');
-const counterValue = document.querySelectorAll('.counterValue');
+
+
 const itemCounts = {};
 
 function updateCount(){
-    const incrementBtn = document.querySelectorAll('.increment');
-    incrementBtn.forEach((btn,index)=>{
+    const incrementBtns = document.querySelectorAll('.increment');
+    const counterValue = document.querySelectorAll('.counterValue');
+    const decrementbtns = document.querySelectorAll('.decrement');
+    incrementBtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
+            debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
-            console.log(itemId);
+            const decrement = e.target.closest('.container').querySelector('.decrement');
+            decrement.disabled = false;
+            itemCounts[itemId] = (itemCounts[itemId] || 0) + 1;
+            counterValue[index].textContent = itemCounts[itemId]; 
+            
+        })
+    })
+    decrementbtns.forEach((btn,index)=>{
+        btn.addEventListener('click',(e)=>{
+            console.log(e.target.classList);
+            debugger;
+            const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
+            const counterVal = e.target.closest('.container').querySelector('.counterValue');
+            
+            if(counterVal.textContent === '0'){
+                btn.disabled = true
+            }
+            else{
+                btn.disabled = false;
+                itemCounts[itemId] = (itemCounts[itemId] || 0) - 1;
+                counterValue[index].textContent = itemCounts[itemId];
+            }
         })
     })
 }
-
 
 function displayMenu(menuItem){
     let displayMenuItems = menuItem.map((item,index)=>{
@@ -261,12 +296,17 @@ function displayMenu(menuItem){
                     <h3 style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
                 </div>
             </div>
-            <button class="cart-btn" data-id="${item.id}">Add to cart</button>
+            <button class="cart-btn" disabled data-id="${item.id}">Add to cart</button>
         </div>
     </div>`;
     })
     displayMenuItems = displayMenuItems.join('');
     menuGrid.innerHTML = displayMenuItems;
     addToCart();
-    
+    updateCount();
 }
+
+
+
+
+
