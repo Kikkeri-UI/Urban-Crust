@@ -173,9 +173,8 @@ const drinks = [
     // Add more drink items as needed
 ];
 
-let cartItems = [];
-let count = 1;
-let disabled = false;
+
+const itemCounts = {};
 
 const menuGrid = document.querySelector('.menu-grid');
 
@@ -235,10 +234,7 @@ drinksFIlter.addEventListener('click',()=>{
     displayMenu(drinks);
 })
 
-
-
-
-const itemCounts = {};
+ 
 
 function updateCount(){
     const incrementBtns = document.querySelectorAll('.increment');
@@ -250,7 +246,7 @@ function updateCount(){
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
-            itemCounts[itemId] = (itemCounts[itemId] || 0) + 1;
+            itemCounts[itemId] = (itemCounts[itemId] || 1) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
             updatePrice(itemId, itemCounts[itemId], index);
             debugger
@@ -263,15 +259,18 @@ function updateCount(){
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             
-            if(counterVal.textContent === '0'){
+            if(counterVal.textContent === '1'){
                 btn.disabled = true
+                itemCounts[itemId] = 1;
+                console.log(itemCounts);
             }
             else{
                 btn.disabled = false;
-                itemCounts[itemId] = (itemCounts[itemId] || 0) - 1;
+                itemCounts[itemId] = (itemCounts[itemId] || 1) - 1;
                 counterValue[index].textContent = itemCounts[itemId];
             }
-            updatePrice(itemId, itemCounts[itemId], index);
+             updatePrice(itemId, itemCounts[itemId], index);
+            
         })
     })
 }
@@ -281,6 +280,7 @@ function updatePrice(itemId,quantity,index){
     console.log(item);
     const priceElement = document.querySelector(`#price-${index}`);
     const totalPrice = (item.price.slice(1)*quantity.toFixed(2));
+    console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
 }
 
@@ -304,14 +304,14 @@ function displayMenu(menuItem){
             <div class="counter-price">
                 <div class="counter">
                     <button class="increment">+</button>
-                    <div class="counterValue" id='counter-${index}'>0</div>
+                    <div class="counterValue" id='counter-${index}'>1</div>
                     <button class="decrement">-</button>
                 </div>
                 <div class="price">
                     <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
                 </div>
             </div>
-            <button class="cart-btn" disabled data-id="${item.id}">Add to cart</button>
+            <a href="cart.html"><button class="cart-btn" disabled data-id="${item.id}">Add to Cart</button></a>
         </div>
     </div>`;
     })
