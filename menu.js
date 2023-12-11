@@ -201,6 +201,8 @@ function addToCart(){
             }
             else{
                 existingItem.count = quantity;
+                const totalPrice = ((existingItem.price.slice(1)*quantity).toFixed(2));
+                existingItem.price = totalPrice;
             }
             console.log(cartItems);
         })
@@ -228,8 +230,7 @@ drinksFIlter.addEventListener('click',()=>{
     displayMenu(drinks);
 })
 
- 
-function updateCount(){
+ function updateCount(){
     const incrementBtns = document.querySelectorAll('.increment');
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
@@ -313,8 +314,4 @@ function displayMenu(menuItem){
     addToCart();
     updateCount();
 }
-
-
-
-
 
