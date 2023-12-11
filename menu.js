@@ -170,7 +170,7 @@ const drinks = [
         ingredients: 'Freshly squeezed orange juice',
         img: './Icons/orange-juice.webp',
     },
-    // Add more drink items as needed
+    
 ];
 
 
@@ -180,33 +180,27 @@ const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded',()=>{
     displayMenu(pizzas);
-    
-    
+    //addToCart(); 
 })
+let cartItems = [];
+
 function addToCart(){
-    const cartButtons = document.querySelectorAll('.cart-btn');
-    cartButtons.forEach((cartBtn)=>{
-        cartBtn.addEventListener('click',(e)=>{
+    const cartBtns = document.querySelectorAll('.cart-btn');
+    cartBtns.forEach((btn)=>{
+        btn.addEventListener('click',(e)=>{
+            debugger
             const itemId = e.target.dataset.id;
-            console.log(itemId);
-            let selectedItem;
-            switch(true){
-                case itemId <11 :  selectedItem = pizzas.find(item => item.id.toString() === itemId);
-                break;
-                case itemId > 10 && itemId < 15 :  selectedItem = sides.find(item => item.id.toString() === itemId);
-                break;
-                case itemId > 20 && itemId < 25 : selectedItem = desserts.find(item => item.id.toString() === itemId);
-                break;
-                case itemId > 30 && itemId < 33 : selectedItem = drinks.find(item => item.id.toString() === itemId);
+            const selectedItem = findItemById(itemId);
+            console.log(selectedItem);
+            const counterVal = e.target.closest('.container').querySelector('.counterValue');
+            const quantity = counterVal.textContent;
+            console.log(quantity);
+            let existingItem = cartItems.find((item)=>item.id === selectedItem.id);
+            if(!existingItem){
+                cartItems.push({...selectedItem, count: quantity});
             }
-            if (cartItems.length === 0){
-                cartItems = [selectedItem];
-            }
-            else {
-                let exisitingItem = cartItems.find((item)=>item.id === selectedItem.id);
-                if(!exisitingItem){
-                    cartItems.push(selectedItem);
-                }
+            else{
+                existingItem.count = quantity;
             }
             console.log(cartItems);
         })
@@ -235,7 +229,6 @@ drinksFIlter.addEventListener('click',()=>{
 })
 
  
-
 function updateCount(){
     const incrementBtns = document.querySelectorAll('.increment');
     const counterValue = document.querySelectorAll('.counterValue');
@@ -254,7 +247,7 @@ function updateCount(){
     })
     decrementbtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
-            console.log(e);
+            //console.log(e);
             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
@@ -262,7 +255,7 @@ function updateCount(){
             if(counterVal.textContent === '1'){
                 btn.disabled = true
                 itemCounts[itemId] = 1;
-                console.log(itemCounts);
+                //console.log(itemCounts);
             }
             else{
                 btn.disabled = false;
@@ -277,10 +270,10 @@ function updateCount(){
 
 function updatePrice(itemId,quantity,index){
     const item = findItemById(itemId);
-    console.log(item);
+    //console.log(item);
     const priceElement = document.querySelector(`#price-${index}`);
     const totalPrice = (item.price.slice(1)*quantity.toFixed(2));
-    console.log(totalPrice);
+    //console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
 }
 
@@ -311,7 +304,7 @@ function displayMenu(menuItem){
                     <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
                 </div>
             </div>
-            <a href="cart.html"><button class="cart-btn" disabled data-id="${item.id}">Add to Cart</button></a>
+            <button class="cart-btn" data-id="${item.id}">Add to Cart</button>
         </div>
     </div>`;
     })
