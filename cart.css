@@ -1,0 +1,135 @@
+body{
+    margin: 50px;
+    padding: 50px;
+}
+
+
+.cart-items-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.container{
+    display: flex;
+    border: 2px solid rgb(37, 37, 37);
+    border-radius: 10px;
+}
+.img-container{
+    padding: 15px;
+    display: flex;
+    border-radius: 25px;
+}
+.cart-item-img{
+    padding: 2.5px;
+    border-radius: 2.5px;
+
+}
+
+.info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: C8DADE;
+    padding: 5px;
+    width: 100%;
+}
+
+.top-section{
+    display: flex;
+    justify-content: space-between;
+}
+.counter {
+    display: flex;
+    align-items: center;
+}
+
+.increment,
+.decrement {
+    height: 30px;
+    width: 60px;
+    padding: 0 6px;
+    border-radius: 2px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #C8DADE;
+    border: 2px solid #030303;
+    color: black;
+    margin: 20px;
+    border-radius: 4px;
+    transition: background-color 0.5s ease-in-out;
+    cursor: pointer;
+    ;
+}
+
+.cart-item-heading{
+    font-family: Grandstander;
+    font-size: 24px;
+    font-weight: 700;
+    color: #030303;
+    margin-left: 20px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(58, 57, 57);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(241, 241, 241);
+    z-index: 1;
+}
+
+.logo-section,
+.cart-section {
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-section{
+    margin-left: 20px;
+}
+
+.logo-img{
+    width: 90px;
+    height: 30px;
+}
+
+.cart-section{
+    margin-right: 10px;
+}
+.cart-img{
+    width: 40px;
+    height: 30px;
+}
+.desc-section{
+    flex: 1;
+    display: flex;
+    max-width: 400px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(20, 18, 18);
+}
+
+.bottom-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete{
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 6px;
+}
+.delete-img{
+    width: 100%;
+}

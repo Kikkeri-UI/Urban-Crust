@@ -188,23 +188,33 @@ function addToCart(){
     const cartBtns = document.querySelectorAll('.cart-btn');
     cartBtns.forEach((btn)=>{
         btn.addEventListener('click',(e)=>{
-            debugger
+            
             const itemId = e.target.dataset.id;
             const selectedItem = findItemById(itemId);
-            console.log(selectedItem);
+            //console.log(selectedItem);
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             const quantity = counterVal.textContent;
-            console.log(quantity);
+            
+            //console.log(quantity);
+            debugger
             let existingItem = cartItems.find((item)=>item.id === selectedItem.id);
+            let amount = selectedItem.price.slice(1) * quantity;
+            console.log(amount);
             if(!existingItem){
-                cartItems.push({...selectedItem, count: quantity});
+                cartItems.push({...selectedItem, count: quantity, amount : amount});
             }
             else{
                 existingItem.count = quantity;
-                const totalPrice = ((existingItem.price.slice(1)*quantity).toFixed(2));
-                existingItem.price = totalPrice;
+                existingItem.amount = amount;
             }
             console.log(cartItems);
+            console.log(cartItems.length);
+            alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+
+            //window.location.href = 'cart.html';
+
         })
     })
 }
@@ -236,20 +246,20 @@ drinksFIlter.addEventListener('click',()=>{
     const decrementbtns = document.querySelectorAll('.decrement');
     incrementBtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
-            debugger;
+            // debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
             itemCounts[itemId] = (itemCounts[itemId] || 1) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
             updatePrice(itemId, itemCounts[itemId], index);
-            debugger
+            //debugger
         })
     })
     decrementbtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
             //console.log(e);
-            debugger;
+            //debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             
@@ -276,6 +286,7 @@ function updatePrice(itemId,quantity,index){
     const totalPrice = (item.price.slice(1)*quantity.toFixed(2));
     //console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
+    return totalPrice;
 }
 
 function findItemById(id){
@@ -314,4 +325,5 @@ function displayMenu(menuItem){
     addToCart();
     updateCount();
 }
+
 
