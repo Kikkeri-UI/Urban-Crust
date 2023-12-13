@@ -27,11 +27,28 @@ window.addEventListener('DOMContentLoaded', () => {
     cartItems = [...cartItems, ...addedToCart];
     console.log(cartItems);
     displayCartItems(cartItems);
+    initCartButtons();
     
 });
 
+function initCartButtons(){
+    let deleteBtns = document.querySelectorAll('.delete-img');
+    deleteBtns.forEach((btn,index)=>{
+        btn.addEventListener('click',(e)=>{
+            debugger;
+            console.log(e.target)
+            const itemId = cartItems[index].id;
+            console.log(itemId);
+            const updatedCart = cartItems.filter((item)=>{
+               return item.id !== itemId;
+            })
+            console.log(updatedCart);
+            displayCartItems(updatedCart);
+        })
+    })
+}
+
 let cartgrid = document.querySelector('.cart-items-grid');
-let deleteBtns = document.querySelectorAll('.delete-img');
 
 function displayCartItems(cartItem){
     let cartItems = cartItem.map((item,index)=>{
@@ -64,10 +81,6 @@ function displayCartItems(cartItem){
     cartgrid.innerHTML = cartItems;
 }
 
-deleteBtns.forEach((btn)=>{
-    btn.addEventListener('click',(e)=>{
-        debugger;
-        console.log(e.target)
-    })
-})
+
+
 
