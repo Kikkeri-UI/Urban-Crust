@@ -1,23 +1,4 @@
-// cart.js
-// function displayCartItems(items) {
-//     const cartItemsDiv = document.getElementById('cart-items');
-//     cartItemsDiv.innerHTML = '';
 
-//     items.forEach(item => {
-//         const itemDiv = document.createElement('div');
-//         itemDiv.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-//         cartItemsDiv.appendChild(itemDiv);
-//     });
-// }
-
-// // Example cart data (replace with actual cart data)
-// const cartData = [
-//     { name: 'Margherita', price: 10.99 },
-//     { name: 'Pepperoni', price: 12.99 }
-// ];
-
-// // Display initial cart items
-// displayCartItems(cartData);
 let cartItems = [];
 window.addEventListener('DOMContentLoaded', () => {
     // Retrieve cart data from local storage
@@ -27,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
     cartItems = [...cartItems, ...addedToCart];
     console.log(cartItems);
     displayCartItems(cartItems);
-    initCartButtons();
+    
     
 });
 
@@ -39,11 +20,14 @@ function initCartButtons(){
             console.log(e.target)
             const itemId = cartItems[index].id;
             console.log(itemId);
-            const updatedCart = cartItems.filter((item)=>{
+            cartItems = cartItems.filter((item)=>{
                return item.id !== itemId;
             })
-            console.log(updatedCart);
-            displayCartItems(updatedCart);
+            //console.log(updatedCart);
+            // alert(`${item.title} being removed from the cart`);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            alert(`You are removing from the cart`)
+            displayCartItems(cartItems);
         })
     })
 }
@@ -79,6 +63,7 @@ function displayCartItems(cartItem){
     });
     cartItems = cartItems.join('');
     cartgrid.innerHTML = cartItems;
+    initCartButtons();
 }
 
 
