@@ -47,6 +47,7 @@ function updateCount(){
     const incrementBtns = document.querySelectorAll('.increment');
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
+    const price = document.querySelector('#price');
     incrementBtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
              debugger;
@@ -56,7 +57,10 @@ function updateCount(){
             decrement.disabled = false;
             itemCounts[itemId] = Number(counterVal.textContent) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
-            cartItems[index].count = counterVal.textContent;
+            cartItems[index].count = Number(counterVal.textContent);
+            cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
+            price.innerHTML = cartItems[index].amount;
+            console.log(cartItems[index].amount)
             localStorage.setItem('cart', JSON.stringify(cartItems));
             
         })
@@ -76,7 +80,9 @@ function updateCount(){
                 btn.disabled = false;
                 itemCounts[itemId] = counterVal.textContent - 1;
                 counterValue[index].textContent = itemCounts[itemId];
-                cartItems[index].count = counterVal.textContent;
+                cartItems[index].count = Number(counterVal.textContent);
+                cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
+                price.innerHTML = cartItems[index].amount;
                 localStorage.setItem('cart', JSON.stringify(cartItems));
             }
             
@@ -95,7 +101,7 @@ function displayCartItems(cartItem){
         <div class="info-container">
             <div class="top-section">
                 <h3 class="cart-item-heading">${item.title}</h3>
-                <h3 class="cart-item-heading" style="margin-right: 20px;">£${item.amount}</h3>
+                <h3 id="price"class="cart-item-heading" style="margin-right: 20px;">£${item.amount}</h3>
             </div>
             <div class="desc-section">
                 <p style="margin-left: 20px; margin-right: 20px;">${item.ingredients}</p>
