@@ -1,16 +1,27 @@
 
 let cartItems = [];
+let itemCounts = {};
+let addedToCart = [];
 window.addEventListener('DOMContentLoaded', () => {
     // Retrieve cart data from local storage
     debugger;
     const storedCart = localStorage.getItem('cart');
-    let addedToCart = storedCart ? JSON.parse(storedCart) : [];
+    addedToCart = storedCart ? JSON.parse(storedCart) : [];
+    console.log(addedToCart);
+    const storedItemCounts = localStorage.getItem('itemCounts');
+    itemCounts = storedItemCounts ? JSON.parse(storedItemCounts) : {};
     cartItems = [...cartItems, ...addedToCart];
     console.log(cartItems);
     displayCartItems(cartItems);
-    
+    updateCount();
     
 });
+
+// function showCartItems(cartItems){
+//     const storedCart = localStorage.getItem('cart');
+//     addedToCart = storedCart ? JSON.parse(storedCart) : [];
+//     cartItems = [...cartItems, ...addedToCart];
+// }
 
 function initCartButtons(){
     let deleteBtns = document.querySelectorAll('.delete-img');
@@ -28,6 +39,47 @@ function initCartButtons(){
             localStorage.setItem('cart', JSON.stringify(cartItems));
             alert(`You are removing from the cart`)
             displayCartItems(cartItems);
+        })
+    })
+}
+
+function updateCount(){
+    const incrementBtns = document.querySelectorAll('.increment');
+    const counterValue = document.querySelectorAll('.counterValue');
+    const decrementbtns = document.querySelectorAll('.decrement');
+    incrementBtns.forEach((btn,index)=>{
+        btn.addEventListener('click',(e)=>{
+             debugger;
+            const itemId = cartItems[index].id;
+            const decrement = e.target.closest('.container').querySelector('.decrement');
+            const counterVal = e.target.closest('.container').querySelector('.counterValue');
+            decrement.disabled = false;
+            itemCounts[itemId] = Number(counterVal.textContent) + 1;
+            counterValue[index].textContent = itemCounts[itemId]; 
+            cartItems[index].count = counterVal.textContent;
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            
+        })
+    })
+    decrementbtns.forEach((btn,index)=>{
+        btn.addEventListener('click',(e)=>{
+            //console.log(e);
+            debugger;
+            const itemId = cartItems[index].id;
+            const counterVal = e.target.closest('.container').querySelector('.counterValue');
+            
+            if(counterVal.textContent === '1'){
+                btn.disabled = true
+                itemCounts[itemId] = 1;
+            }
+            else{
+                btn.disabled = false;
+                itemCounts[itemId] = counterVal.textContent - 1;
+                counterValue[index].textContent = itemCounts[itemId];
+                cartItems[index].count = counterVal.textContent;
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+            }
+            
         })
     })
 }

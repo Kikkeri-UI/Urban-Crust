@@ -259,7 +259,7 @@ drinksFIlter.addEventListener('click',()=>{
     decrementbtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
             //console.log(e);
-            //debugger;
+            debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             
