@@ -47,19 +47,20 @@ function updateCount(){
     const incrementBtns = document.querySelectorAll('.increment');
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
-    const price = document.querySelector('#price');
+    
     incrementBtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
              debugger;
             const itemId = cartItems[index].id;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
+            const priceValue = e.target.closest('.container').querySelector('#price');
             decrement.disabled = false;
             itemCounts[itemId] = Number(counterVal.textContent) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
             cartItems[index].count = Number(counterVal.textContent);
             cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
-            price.innerHTML = cartItems[index].amount;
+            priceValue.innerHTML = cartItems[index].amount;
             console.log(cartItems[index].amount)
             localStorage.setItem('cart', JSON.stringify(cartItems));
             
@@ -71,7 +72,7 @@ function updateCount(){
             debugger;
             const itemId = cartItems[index].id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
-            
+            const priceValue = e.target.closest('.container').querySelector('#price');
             if(counterVal.textContent === '1'){
                 btn.disabled = true
                 itemCounts[itemId] = 1;
@@ -82,7 +83,7 @@ function updateCount(){
                 counterValue[index].textContent = itemCounts[itemId];
                 cartItems[index].count = Number(counterVal.textContent);
                 cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
-                price.innerHTML = cartItems[index].amount;
+                priceValue.innerHTML = cartItems[index].amount;
                 localStorage.setItem('cart', JSON.stringify(cartItems));
             }
             
