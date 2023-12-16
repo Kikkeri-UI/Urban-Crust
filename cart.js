@@ -3,25 +3,28 @@ let cartItems = [];
 let itemCounts = {};
 let addedToCart = [];
 window.addEventListener('DOMContentLoaded', () => {
-    // Retrieve cart data from local storage
+   
     debugger;
     const storedCart = localStorage.getItem('cart');
     addedToCart = storedCart ? JSON.parse(storedCart) : [];
     console.log(addedToCart);
+    console.log(cartItems);
     const storedItemCounts = localStorage.getItem('itemCounts');
     itemCounts = storedItemCounts ? JSON.parse(storedItemCounts) : {};
-    cartItems = [...cartItems, ...addedToCart];
+    const uniqueItems = new Set([...cartItems, ...addedToCart].map(item => item.id));
+    
+    // Merge arrays based on unique item ids
+    cartItems = Array.from(uniqueItems, id => {
+        const existingItem = cartItems.find(item => item.id === id);
+        const addedItem = addedToCart.find(item => item.id === id);
+        return existingItem ? { ...existingItem } : { ...addedItem };
+    });
     console.log(cartItems);
     displayCartItems(cartItems);
     updateCount();
+    displayTotalPrice(cartItems);
     
 });
-
-// function showCartItems(cartItems){
-//     const storedCart = localStorage.getItem('cart');
-//     addedToCart = storedCart ? JSON.parse(storedCart) : [];
-//     cartItems = [...cartItems, ...addedToCart];
-// }
 
 function initCartButtons(){
     let deleteBtns = document.querySelectorAll('.delete-img');
@@ -34,11 +37,15 @@ function initCartButtons(){
             cartItems = cartItems.filter((item)=>{
                return item.id !== itemId;
             })
-            //console.log(updatedCart);
-            // alert(`${item.title} being removed from the cart`);
             localStorage.setItem('cart', JSON.stringify(cartItems));
             alert(`You are removing from the cart`)
-            displayCartItems(cartItems);
+            if(cartItems.length!=0){
+                displayCartItems(cartItems);
+            }
+            else{
+                window.location.href = 'menu.html'
+            }
+            
         })
     })
 }
@@ -59,16 +66,16 @@ function updateCount(){
             itemCounts[itemId] = Number(counterVal.textContent) + 1;
             counterValue[index].textContent = itemCounts[itemId]; 
             cartItems[index].count = Number(counterVal.textContent);
-            cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
-            priceValue.innerHTML = cartItems[index].amount;
+            cartItems[index].amount = (cartItems[index].price.slice(1) * cartItems[index].count).toFixed(2);
+            priceValue.innerHTML = `£${cartItems[index].amount}`;
             console.log(cartItems[index].amount)
             localStorage.setItem('cart', JSON.stringify(cartItems));
+            displayTotalPrice(cartItems);
             
         })
     })
     decrementbtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
-            //console.log(e);
             debugger;
             const itemId = cartItems[index].id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
@@ -83,9 +90,10 @@ function updateCount(){
                 counterValue[index].textContent = itemCounts[itemId];
                 cartItems[index].count = Number(counterVal.textContent);
                 cartItems[index].amount = cartItems[index].price.slice(1) * cartItems[index].count;
-                priceValue.innerHTML = cartItems[index].amount;
+                priceValue.innerHTML = `£${cartItems[index].amount}`;
                 localStorage.setItem('cart', JSON.stringify(cartItems));
             }
+            displayTotalPrice(cartItems);
             
         })
     })
@@ -123,6 +131,19 @@ function displayCartItems(cartItem){
     cartItems = cartItems.join('');
     cartgrid.innerHTML = cartItems;
     initCartButtons();
+}
+
+//
+
+function displayTotalPrice(cartItem) {
+    let totalPrice = cartItem.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.amount;
+    },0);
+
+    let checkoutPrice = document.querySelector('.totalprice');
+    checkoutPrice.innerHTML = `Cart total price: ${totalPrice}`;
+
+    return `<h2>Cart total price: ${totalPrice}</h2>`;
 }
 
 

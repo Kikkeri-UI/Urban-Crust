@@ -179,8 +179,18 @@ const itemCounts = {};
 const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded',()=>{
-    displayMenu(pizzas);
-    //addToCart(); 
+    // debugger
+    
+    const storedCart = localStorage.getItem('cart');
+    let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
+    if(existingCartItems.length>0){
+        displayMenu(existingCartItems);
+    }
+    else{
+        displayMenu(pizzas);
+    }
+
+    
 })
 let cartItems = [];
 
@@ -206,11 +216,18 @@ function addToCart(){
             else{
                 existingItem.count = quantity;
                 existingItem.amount = amount;
+                cartItems.push({...selectedItem, count: quantity, amount : amount});
             }
             console.log(cartItems);
             console.log(cartItems.length);
             alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
-            localStorage.setItem('cart', JSON.stringify(cartItems));
+            const storedCart = localStorage.getItem('cart');
+            let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
+
+            existingCartItems = [...existingCartItems, { ...selectedItem, count: quantity, amount: amount }];
+            console.log(existingCartItems);
+
+            localStorage.setItem('cart', JSON.stringify(existingCartItems));
 
 
             //window.location.href = 'cart.html';
