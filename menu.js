@@ -1,5 +1,5 @@
 
-const pizzas =[
+const pizzas = [
     {
         id: 1,
         title: 'Pepproni Passion',
@@ -7,6 +7,7 @@ const pizzas =[
         price: '£10.99',
         ingredients: '2x pepperoni | 2x cheese',
         img: './Icons/passion.webp',
+        count: 1
     },
     {
         id: 2,
@@ -15,6 +16,7 @@ const pizzas =[
         price: '£9.99',
         ingredients: 'Tomato sauce | Mozzarella cheese | Basil',
         img: './Icons/margherita.webp',
+        count: 1
     },
     {
         id: 3,
@@ -23,6 +25,7 @@ const pizzas =[
         price: '£11.99',
         ingredients: 'Mushrooms | Bell peppers | Onions | Olives | Cheese',
         img: './Icons/veg-delight.webp',
+        count: 1
     },
     {
         id: 4,
@@ -31,6 +34,7 @@ const pizzas =[
         price: '£12.99',
         ingredients: 'Pepperoni | Sausage | Bacon | Ham | Cheese',
         img: './Icons/meatlover.webp',
+        count: 1
     },
     {
         id: 5,
@@ -39,6 +43,7 @@ const pizzas =[
         price: '£10.99',
         ingredients: 'Ham | Pineapple | Cheese',
         img: './Icons/four.webp',
+        count: 1
     },
     {
         id: 6,
@@ -47,6 +52,7 @@ const pizzas =[
         price: '£13.99',
         ingredients: 'Feta cheese | Kalamata olives | Tomatoes | Spinach',
         img: './Icons/med.webp',
+        count: 1
     },
     {
         id: 7,
@@ -55,6 +61,7 @@ const pizzas =[
         price: '£14.99',
         ingredients: 'BBQ chicken | Red onions | Bell peppers | Cheese',
         img: './Icons/bbq.webp',
+        count: 1
     },
     {
         id: 8,
@@ -63,6 +70,7 @@ const pizzas =[
         price: '£11.99',
         ingredients: 'Spicy sausage | Jalapeños | Onions | Cheese',
         img: './Icons/spicy.webp',
+        count: 1
     },
     {
         id: 9,
@@ -71,6 +79,7 @@ const pizzas =[
         price: '£12.99',
         ingredients: 'Mozzarella | Cheddar | Gouda | Parmesan',
         img: './Icons/four.webp',
+        count: 1
     },
     {
         id: 10,
@@ -79,6 +88,7 @@ const pizzas =[
         price: '£12.99',
         ingredients: 'Broccoli | Mushrooms | Black olives | Tomatoes | Cheese',
         img: './Icons/supreme.webp',
+        count: 1
     },
 ]
 const sides = [
@@ -89,6 +99,7 @@ const sides = [
         price: '£4.99',
         ingredients: 'cheesy garlic bread',
         img: './Icons/garlic-bread.webp',
+        count: 1
     },
     {
         id: 12,
@@ -97,6 +108,7 @@ const sides = [
         price: '£6.99',
         ingredients: 'doughballs loaded with cheese',
         img: './Icons/cheese-doughball.webp',
+        count: 1
     },
     {
         id: 13,
@@ -105,6 +117,7 @@ const sides = [
         price: '£6.99',
         ingredients: 'doughballs loaded with cheese and pepperoni',
         img: './Icons/pepperoni-doughball.webp',
+        count: 1
     },
     {
         id: 14,
@@ -113,6 +126,7 @@ const sides = [
         price: '£5.99',
         ingredients: 'Crispy fries loaded with cheese',
         img: './Icons/lfries-cheese.webp',
+        count: 1
     }
     // Add more side items as needed
 ];
@@ -125,6 +139,7 @@ const desserts = [
         price: '£7.99',
         ingredients: 'Rich chocolate brownie with nuts',
         img: './Icons/cookie.webp',
+        count: 1
     },
     {
         id: 22,
@@ -133,6 +148,7 @@ const desserts = [
         price: '£8.99',
         ingredients: 'Classic New York-style cheesecake',
         img: './Icons/cheesecake-icecream.webp',
+        count: 1
     },
     {
         id: 23,
@@ -141,6 +157,7 @@ const desserts = [
         price: '£8.99',
         ingredients: 'Lava of chocoloate awaits you',
         img: './Icons/cheesecake-icecream.webp',
+        count: 1
     },
     {
         id: 24,
@@ -149,8 +166,9 @@ const desserts = [
         price: '£8.99',
         ingredients: 'Classic New York-style cheesecake',
         img: './Icons/cheesecake-icecream.webp',
+        count: 1
     },
-    
+
 ];
 
 const drinks = [
@@ -161,6 +179,7 @@ const drinks = [
         price: '£2.99',
         ingredients: 'Classic cola beverage',
         img: './Icons/cola.webp',
+        count: 1
     },
     {
         id: 32,
@@ -169,54 +188,73 @@ const drinks = [
         price: '£3.99',
         ingredients: 'Freshly squeezed orange juice',
         img: './Icons/orange-juice.webp',
+        count: 1
     },
-    
+
 ];
 
-
+let addedPizzas = [];
+let addedSides = [];
+let addedDesserts = [];
+let addedDrinks = [];
+let updatedMenu = [];
 const itemCounts = {};
 
 const menuGrid = document.querySelector('.menu-grid');
 
-window.addEventListener('DOMContentLoaded',()=>{
-    // debugger
-    
+window.addEventListener('DOMContentLoaded', () => {
+   
     const storedCart = localStorage.getItem('cart');
     let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
-    if(existingCartItems.length>0){
-        displayMenu(existingCartItems);
-    }
-    else{
-        displayMenu(pizzas);
-    }
-
+     const menu = [...pizzas, ...sides, ...desserts, ...drinks];
+     const selectedItem = existingCartItems.map((cartItem)=>{
+        const matchingItem = menu.find((menuItem) => menuItem.id === cartItem.id );
+        if(matchingItem){
+            matchingItem.count = cartItem.count;
+            matchingItem.price = cartItem.amount;
+        }
+        return matchingItem || cartItem;
+    })
     
+    const unselectedItems = menu.filter((menuItem) => !existingCartItems.some((cartItem) => cartItem.id === menuItem.id));
+    console.log(unselectedItems);
+    updatedMenu = selectedItem.concat(unselectedItems);
+    console.log(updatedMenu);
+    debugger;
+
+    addedPizzas = updatedMenu.filter((item) => item.category === 'Pizza');
+    addedSides = updatedMenu.filter((item) => item.category === 'Sides');
+    addedDesserts = updatedMenu.filter((item) => item.category === 'Desserts');
+    addedDrinks = updatedMenu.filter((item) => item.category === 'Drinks');
+    
+    displayFilteredMenu(addedPizzas,pizzas);
 })
+
 let cartItems = [];
 
-function addToCart(){
+function addToCart() {
     const cartBtns = document.querySelectorAll('.cart-btn');
-    cartBtns.forEach((btn)=>{
-        btn.addEventListener('click',(e)=>{
-            
+    cartBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+
             const itemId = e.target.dataset.id;
             const selectedItem = findItemById(itemId);
             //console.log(selectedItem);
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             const quantity = counterVal.textContent;
-            
+
             //console.log(quantity);
             debugger
-            let existingItem = cartItems.find((item)=>item.id === selectedItem.id);
+            let existingItem = cartItems.find((item) => item.id === selectedItem.id);
             let amount = selectedItem.price.slice(1) * quantity;
             console.log(amount);
-            if(!existingItem){
-                cartItems.push({...selectedItem, count: quantity, amount : amount});
+            if (!existingItem) {
+                cartItems.push({ ...selectedItem, count: quantity, amount: amount });
             }
-            else{
+            else {
                 existingItem.count = quantity;
                 existingItem.amount = amount;
-                cartItems.push({...selectedItem, count: quantity, amount : amount});
+                cartItems.push({ ...selectedItem, count: quantity, amount: amount });
             }
             console.log(cartItems);
             console.log(cartItems.length);
@@ -229,9 +267,6 @@ function addToCart(){
 
             localStorage.setItem('cart', JSON.stringify(existingCartItems));
 
-
-            //window.location.href = 'cart.html';
-
         })
     })
 }
@@ -239,80 +274,90 @@ function addToCart(){
 const sidesFilter = document.getElementById('filter-sides');
 const pizzaFilter = document.getElementById('filter-pizza');
 const dessertFilter = document.getElementById('filter-desserts');
-const drinksFIlter = document.getElementById('filter-drinks');
+const drinksFilter = document.getElementById('filter-drinks');
 
-pizzaFilter.addEventListener('click',()=>{
-    displayMenu(pizzas);
+function displayFilteredMenu(categoryItems, defaultItems) {
+    if (updatedMenu.length > 0) {
+        displayMenu(categoryItems);
+    } else {
+        displayMenu(defaultItems);
+    }
+}
+
+pizzaFilter.addEventListener('click', () => {
+    displayFilteredMenu(addedPizzas,pizzas);
 })
 
-sidesFilter.addEventListener('click',()=>{
-    displayMenu(sides);
+sidesFilter.addEventListener('click', () => {
+    displayFilteredMenu(addedSides,sides)
 })
 
-dessertFilter.addEventListener('click',()=>{
-    displayMenu(desserts);
+dessertFilter.addEventListener('click', () => {
+    displayFilteredMenu(addedDesserts,desserts);
 })
 
-drinksFIlter.addEventListener('click',()=>{
-    displayMenu(drinks);
+drinksFilter.addEventListener('click', () => {
+    displayFilteredMenu(addedDrinks,drinks);
 })
 
- function updateCount(){
+
+
+function updateCount() {
     const incrementBtns = document.querySelectorAll('.increment');
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
-    incrementBtns.forEach((btn,index)=>{
-        btn.addEventListener('click',(e)=>{
+    incrementBtns.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
             // debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
             itemCounts[itemId] = (itemCounts[itemId] || 1) + 1;
-            counterValue[index].textContent = itemCounts[itemId]; 
+            counterValue[index].textContent = itemCounts[itemId];
             updatePrice(itemId, itemCounts[itemId], index);
             //debugger
         })
     })
-    decrementbtns.forEach((btn,index)=>{
-        btn.addEventListener('click',(e)=>{
+    decrementbtns.forEach((btn, index) => {
+        btn.addEventListener('click', (e) => {
             //console.log(e);
             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
-            
-            if(counterVal.textContent === '1'){
+
+            if (counterVal.textContent === '1') {
                 btn.disabled = true
                 itemCounts[itemId] = 1;
                 //console.log(itemCounts);
             }
-            else{
+            else {
                 btn.disabled = false;
                 itemCounts[itemId] = (itemCounts[itemId] || 1) - 1;
                 counterValue[index].textContent = itemCounts[itemId];
             }
-             updatePrice(itemId, itemCounts[itemId], index);
-            
+            updatePrice(itemId, itemCounts[itemId], index);
+
         })
     })
 }
 
-function updatePrice(itemId,quantity,index){
+function updatePrice(itemId, quantity, index) {
     const item = findItemById(itemId);
     //console.log(item);
     const priceElement = document.querySelector(`#price-${index}`);
-    const totalPrice = (item.price.slice(1)*quantity.toFixed(2));
+    const totalPrice = (item.price.slice(1) * quantity.toFixed(2));
     //console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
     return totalPrice;
 }
 
-function findItemById(id){
+function findItemById(id) {
     const menu = [...pizzas, ...sides, ...desserts, ...drinks];
-    return menu.find((item)=>item.id == id);
+    return menu.find((item) => item.id == id);
 }
 
-function displayMenu(menuItem){
-    let displayMenuItems = menuItem.map((item,index)=>{
+function displayMenu(menuItem) {
+    let displayMenuItems = menuItem.map((item, index) => {
         const uniqueId = `item-${index}`;
         return `<div class="container">
         <div class="menu-image-container">
@@ -326,7 +371,7 @@ function displayMenu(menuItem){
             <div class="counter-price">
                 <div class="counter">
                     <button class="increment">+</button>
-                    <div class="counterValue" id='counter-${index}'>1</div>
+                    <div class="counterValue" id='counter-${index}'>${item.count}</div>
                     <button class="decrement">-</button>
                 </div>
                 <div class="price">
@@ -343,4 +388,9 @@ function displayMenu(menuItem){
     updateCount();
 }
 
+function displayUpdatedMenu(cartItem) {
+
+    // const res = menu.map((item)=>item.id === existingCartItems.id);
+    // console.log(res);
+}
 
