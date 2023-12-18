@@ -209,6 +209,7 @@ window.addEventListener('DOMContentLoaded', () => {
      const menu = [...pizzas, ...sides, ...desserts, ...drinks];
      const selectedItem = existingCartItems.map((cartItem)=>{
         const matchingItem = menu.find((menuItem) => menuItem.id === cartItem.id );
+        debugger
         if(matchingItem){
             matchingItem.count = cartItem.count;
             matchingItem.price = cartItem.amount;
@@ -239,6 +240,7 @@ function addToCart() {
 
             const itemId = e.target.dataset.id;
             const selectedItem = findItemById(itemId);
+            console.log(selectedItem.price);
             //console.log(selectedItem);
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             const quantity = counterVal.textContent;
@@ -246,12 +248,14 @@ function addToCart() {
             //console.log(quantity);
             debugger
             let existingItem = cartItems.find((item) => item.id === selectedItem.id);
+            console.log(selectedItem.price);
             let amount = selectedItem.price.slice(1) * quantity;
             console.log(amount);
             if (!existingItem) {
                 cartItems.push({ ...selectedItem, count: quantity, amount: amount });
             }
             else {
+                alert(`${quantity} ${selectedItem.title}(s) item already present do you wish to replace that?`);
                 existingItem.count = quantity;
                 existingItem.amount = amount;
                 cartItems.push({ ...selectedItem, count: quantity, amount: amount });
@@ -308,13 +312,15 @@ function updateCount() {
     const decrementbtns = document.querySelectorAll('.decrement');
     incrementBtns.forEach((btn, index) => {
         btn.addEventListener('click', (e) => {
-            // debugger;
+             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
+            const item = findItemById(itemId);
+            //let count = item.count;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
-            itemCounts[itemId] = (itemCounts[itemId] || 1) + 1;
-            counterValue[index].textContent = itemCounts[itemId];
-            updatePrice(itemId, itemCounts[itemId], index);
+            item.count = item.count + 1;
+            counterValue[index].textContent = item.count;
+            updatePrice(itemId, item.count, index);
             //debugger
         })
     })
@@ -323,29 +329,31 @@ function updateCount() {
             //console.log(e);
             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
+            const item = findItemById(itemId);
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
 
             if (counterVal.textContent === '1') {
                 btn.disabled = true
-                itemCounts[itemId] = 1;
+                item.count = 1;
                 //console.log(itemCounts);
             }
             else {
                 btn.disabled = false;
-                itemCounts[itemId] = (itemCounts[itemId] || 1) - 1;
-                counterValue[index].textContent = itemCounts[itemId];
+                item.count = item.count - 1;
+                counterValue[index].textContent = item.count;
             }
-            updatePrice(itemId, itemCounts[itemId], index);
+            updatePrice(itemId, item.count, index);
 
         })
     })
 }
 
 function updatePrice(itemId, quantity, index) {
+    debugger
     const item = findItemById(itemId);
-    //console.log(item);
+    
     const priceElement = document.querySelector(`#price-${index}`);
-    const totalPrice = (item.price.slice(1) * quantity.toFixed(2));
+    const totalPrice = item.price.slice(1) * quantity;
     //console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
     return totalPrice;
@@ -387,10 +395,3 @@ function displayMenu(menuItem) {
     addToCart();
     updateCount();
 }
-
-function displayUpdatedMenu(cartItem) {
-
-    // const res = menu.map((item)=>item.id === existingCartItems.id);
-    // console.log(res);
-}
-
