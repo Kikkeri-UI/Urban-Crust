@@ -203,7 +203,7 @@ const itemCounts = {};
 const menuGrid = document.querySelector('.menu-grid');
 
 window.addEventListener('DOMContentLoaded', () => {
-   
+    debugger
     const storedCart = localStorage.getItem('cart');
     let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
      const menu = [...pizzas, ...sides, ...desserts, ...drinks];
@@ -212,7 +212,7 @@ window.addEventListener('DOMContentLoaded', () => {
         debugger
         if(matchingItem){
             matchingItem.count = cartItem.count;
-            matchingItem.price = cartItem.amount;
+            matchingItem.amount = cartItem.amount;
         }
         return matchingItem || cartItem;
     })
@@ -237,43 +237,36 @@ function addToCart() {
     const cartBtns = document.querySelectorAll('.cart-btn');
     cartBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-
             const itemId = e.target.dataset.id;
             const selectedItem = findItemById(itemId);
-            console.log(selectedItem.price);
-            //console.log(selectedItem);
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
             const quantity = counterVal.textContent;
-
-            //console.log(quantity);
             debugger
-            let existingItem = cartItems.find((item) => item.id === selectedItem.id);
-            console.log(selectedItem.price);
-            let amount = selectedItem.price.slice(1) * quantity;
-            console.log(amount);
-            if (!existingItem) {
-                cartItems.push({ ...selectedItem, count: quantity, amount: amount });
-            }
-            else {
-                alert(`${quantity} ${selectedItem.title}(s) item already present do you wish to replace that?`);
-                existingItem.count = quantity;
-                existingItem.amount = amount;
-                cartItems.push({ ...selectedItem, count: quantity, amount: amount });
-            }
-            console.log(cartItems);
-            console.log(cartItems.length);
-            alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
             const storedCart = localStorage.getItem('cart');
             let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
+            
+            const existingItemIndex = existingCartItems.findIndex(item => item.id === selectedItem.id);
 
-            existingCartItems = [...existingCartItems, { ...selectedItem, count: quantity, amount: amount }];
-            console.log(existingCartItems);
+            if (existingItemIndex !== -1) {
+                // If the item already exists, update its count and amount
+                existingCartItems[existingItemIndex].count = quantity;
+                existingCartItems[existingItemIndex].amount = selectedItem.price.slice(1) * quantity;
+            } else {
+                // If the item is not in the cart, add a new entry
+                const amount = selectedItem.price.slice(1) * quantity;
+                existingCartItems.push({ ...selectedItem, count: quantity, amount: amount });
+            }
 
+            // Update local storage
             localStorage.setItem('cart', JSON.stringify(existingCartItems));
 
+            console.log(existingCartItems);
+            alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
         })
     })
 }
+
+
 
 const sidesFilter = document.getElementById('filter-sides');
 const pizzaFilter = document.getElementById('filter-pizza');
@@ -293,6 +286,7 @@ pizzaFilter.addEventListener('click', () => {
 })
 
 sidesFilter.addEventListener('click', () => {
+    debugger
     displayFilteredMenu(addedSides,sides)
 })
 
@@ -318,7 +312,7 @@ function updateCount() {
             //let count = item.count;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
-            item.count = item.count + 1;
+            item.count = Number(item.count) + 1;
             counterValue[index].textContent = item.count;
             updatePrice(itemId, item.count, index);
             //debugger
@@ -351,9 +345,15 @@ function updateCount() {
 function updatePrice(itemId, quantity, index) {
     debugger
     const item = findItemById(itemId);
-    
+    let totalPrice;
     const priceElement = document.querySelector(`#price-${index}`);
-    const totalPrice = item.price.slice(1) * quantity;
+    if(typeof item.price === 'string'){
+        totalPrice = item.price.slice(1) * quantity;
+    }
+    else{
+        totalPrice = item.price * quantity;
+    }
+    
     //console.log(totalPrice);
     priceElement.innerHTML = `£${totalPrice}`;
     return totalPrice;
@@ -383,7 +383,7 @@ function displayMenu(menuItem) {
                     <button class="decrement">-</button>
                 </div>
                 <div class="price">
-                    <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.price}</h3>
+                    <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.amount ? item.amount : item.price}</h3>
                 </div>
             </div>
             <button class="cart-btn" data-id="${item.id}">Add to Cart</button>
