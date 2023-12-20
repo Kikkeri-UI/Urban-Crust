@@ -3,7 +3,7 @@ let cartItems = [];
 let itemCounts = {};
 let addedToCart = [];
 window.addEventListener('DOMContentLoaded', () => {
-   
+
     debugger;
     const storedCart = localStorage.getItem('cart');
     addedToCart = storedCart ? JSON.parse(storedCart) : [];
@@ -23,7 +23,6 @@ window.addEventListener('DOMContentLoaded', () => {
     displayCartItems(cartItems);
     updateCount();
     displayTotalPrice(cartItems);
-    
 });
 
 function initCartButtons(){
@@ -57,7 +56,7 @@ function updateCount(){
     
     incrementBtns.forEach((btn,index)=>{
         btn.addEventListener('click',(e)=>{
-             debugger;
+            debugger;
             const itemId = cartItems[index].id;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             const counterVal = e.target.closest('.container').querySelector('.counterValue');
@@ -137,9 +136,10 @@ function displayCartItems(cartItem){
 
 function displayTotalPrice(cartItem) {
     let totalPrice = cartItem.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.amount;
-    },0);
-
+        return Number(accumulator) + Number(currentValue.amount);
+    }, 0).toFixed(2);
+    
+    totalPrice = totalPrice;
     let checkoutPrice = document.querySelector('.totalprice');
     checkoutPrice.innerHTML = `Cart total price: ${totalPrice}`;
 

@@ -244,9 +244,7 @@ function addToCart() {
             debugger
             const storedCart = localStorage.getItem('cart');
             let existingCartItems = storedCart ? JSON.parse(storedCart) : [];
-            
             const existingItemIndex = existingCartItems.findIndex(item => item.id === selectedItem.id);
-
             if (existingItemIndex !== -1) {
                 // If the item already exists, update its count and amount
                 existingCartItems[existingItemIndex].count = quantity;
@@ -259,7 +257,6 @@ function addToCart() {
 
             // Update local storage
             localStorage.setItem('cart', JSON.stringify(existingCartItems));
-
             console.log(existingCartItems);
             alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
         })
@@ -305,6 +302,7 @@ function updateCount() {
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
     incrementBtns.forEach((btn, index) => {
+        //console.log(btn,index);
         btn.addEventListener('click', (e) => {
              debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
