@@ -255,7 +255,6 @@ function addToCart() {
                 existingCartItems.push({ ...selectedItem, count: quantity, amount: amount });
             }
 
-            // Update local storage
             localStorage.setItem('cart', JSON.stringify(existingCartItems));
             console.log(existingCartItems);
             alert(`${quantity} ${selectedItem.title}(s) added to the cart`);
@@ -302,23 +301,19 @@ function updateCount() {
     const counterValue = document.querySelectorAll('.counterValue');
     const decrementbtns = document.querySelectorAll('.decrement');
     incrementBtns.forEach((btn, index) => {
-        //console.log(btn,index);
         btn.addEventListener('click', (e) => {
              debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const item = findItemById(itemId);
-            //let count = item.count;
             const decrement = e.target.closest('.container').querySelector('.decrement');
             decrement.disabled = false;
             item.count = Number(item.count) + 1;
             counterValue[index].textContent = item.count;
             updatePrice(itemId, item.count, index);
-            //debugger
         })
     })
     decrementbtns.forEach((btn, index) => {
         btn.addEventListener('click', (e) => {
-            //console.log(e);
             debugger;
             const itemId = e.target.closest('.container').querySelector('.cart-btn').dataset.id;
             const item = findItemById(itemId);
@@ -327,7 +322,6 @@ function updateCount() {
             if (counterVal.textContent === '1') {
                 btn.disabled = true
                 item.count = 1;
-                //console.log(itemCounts);
             }
             else {
                 btn.disabled = false;

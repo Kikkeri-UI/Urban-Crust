@@ -1,0 +1,125 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(58, 57, 57);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(241, 241, 241);
+    z-index: 1;
+}
+
+.logo-section,
+.cart-section {
+    width: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-section{
+    margin-left: 20px;
+}
+
+.logo-img{
+    width: 90px;
+    height: 30px;
+}
+
+.cart-section{
+    margin-right: 10px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.cart-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.checkout-container {
+    flex: 1;
+    padding: 20px 60px;
+}
+
+.single-item {
+    /* display: flex;
+    justify-content: space-between; */
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 30px 20px 30px;
+}
+
+.checkout-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input,
+textarea,
+select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    padding: 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.item-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    font-family: Roboto;
+    font-size: 20px;
+    color: black;
+
+}
+.price{
+    font-weight: 700;
+}

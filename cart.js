@@ -44,6 +44,7 @@ function initCartButtons(){
             else{
                 window.location.href = 'menu.html'
             }
+            displayTotalPrice(cartItems);
             
         })
     })
@@ -143,7 +144,11 @@ function displayTotalPrice(cartItem) {
     let checkoutPrice = document.querySelector('.totalprice');
     checkoutPrice.innerHTML = `Cart total price: ${totalPrice}`;
 
-    return `<h2>Cart total price: ${totalPrice}</h2>`;
+    return `<h2>Cart total price: £ ${totalPrice}</h2>`;
+}
+
+function fun(){
+    console.log('clicked')
 }
 
 

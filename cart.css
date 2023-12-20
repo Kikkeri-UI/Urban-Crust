@@ -136,12 +136,28 @@ body{
 }
 
 .totalprice{
-    font-family: Roboto;
-    font-size: 20px;
+    font-family: Grandstander;
+    font-size: 30px;
     color: #030303;
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 40px;
+}
+.checkout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.checkout-btn{
+    font-size: 22px;
+    font-family: Roboto;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background-color: #EAEF0A;
+    cursor: pointer;
 }
