@@ -43,11 +43,12 @@ body{
 }
 .cart-img{
     width: 40px;
-    height: 30px;
+    height: 40px;
 }
 .middle-section{
     flex: 1;
     display: flex;
+    justify-content: space-around;
     max-width: 400px;
     font-family: Arial, Helvetica, sans-serif;
     color: whitesmoke;
@@ -57,16 +58,17 @@ body{
     margin-right: 20px;
 
 }
-.deals{
+.cart{
     opacity: 50%;
     transition: opacity 1.15s;
     margin-left: 20px;
     text-decoration: none;
 }
 
-.deals:hover{
+.cart:hover{
     color: red;
     opacity: 1;;
+    cursor: pointer;
 }
 
 /* filters */ 

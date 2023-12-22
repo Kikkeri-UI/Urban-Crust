@@ -1,65 +1,83 @@
-<!-- index.html -->
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sal's Pizzeria</title>
-    <!--Font Open Sans-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,800&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Crust</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
 
-    <!--Font GrandStander -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,300;0,400;0,500;0,600;1,800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,800&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+    }
 
-    <!-- style sheets -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" type="text/css" href="menu_temp.css">
+    .hero {
+      background-image: url('Icons/passion.webp');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      padding: 4em 0;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 1.5em;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: #ff9800;
+      color: #fff;
+      padding: 0.8em 1.5em;
+      text-decoration: none;
+      font-size: 1.2em;
+      border-radius: 5px;
+    }
+
+    .about {
+      padding: 6em 0;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5em;
+      margin-bottom: 1em;
+    }
+
+    .about p {
+      font-size: 1.2em;
+      color: #555;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!--Header Section-->
-    <header class="header">
-        <div class="left-section">
-            <div class="logo">
-                <img src="Icons/logo.png">
-            </div>
-            <!-- <h2 class="restaurant-name">Urban Crust</h2> -->
-        </div>
-        <div class="middle-section">
-            <div class="menu-link">
-                <a href="menu.html">Menu</a>
-            </div>
-            <div class="deals-link">
-                <a href="deals.html">Deals</a>
-            </div>
-            <div class="call-link">
-                <a href="">Call us</a>
-            </div>
-        </div>
-        <div class="right-section">
-            <a href="cart.html"><img src="Icons/cart.png" class="cart-icon"></a>
-            <!-- <div class="order-count">0</div> -->
-        </div>
-    </header>
+  <header>
+    <h1>Urban Crust</h1>
+  </header>
 
-    <section id="hero">
-        .
-    </section>
+  <section class="hero">
+    <h1>Welcome to a Culinary Delight</h1>
+    <p>Explore our exquisite menu and indulge in a world of flavors.</p>
+    <a href="menu.html" class="cta-button">View Menu</a>
+  </section>
 
-    <script src="menu.js"></script>
-    <script src="cart.js"></script>
+  <section class="about">
+    <h2>Contact Us</h2>
+    <p>Discover the passion behind our culinary creations. We strive to deliver an exceptional dining experience, blending quality ingredients with skillful craftsmanship.</p>
+  </section>
 
 </body>
-
 </html>

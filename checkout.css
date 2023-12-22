@@ -123,3 +123,8 @@ button:hover {
 .price{
     font-weight: 700;
 }
+
+.count{
+    height: 30px;
+    width: 30px;
+}

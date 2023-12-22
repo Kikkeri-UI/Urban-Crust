@@ -7,7 +7,8 @@ const pizzas = [
         price: '£10.99',
         ingredients: '2x pepperoni | 2x cheese',
         img: './Icons/passion.webp',
-        count: 1
+        count: 1,
+        categoryLogo: '.Icons/pizza-slice.png'
     },
     {
         id: 2,
@@ -16,7 +17,8 @@ const pizzas = [
         price: '£9.99',
         ingredients: 'Tomato sauce | Mozzarella cheese | Basil',
         img: './Icons/margherita.webp',
-        count: 1
+        count: 1,
+        categoryLogo: 'Icons/pizza-slice.png'
     },
     {
         id: 3,
@@ -25,7 +27,8 @@ const pizzas = [
         price: '£11.99',
         ingredients: 'Mushrooms | Bell peppers | Onions | Olives | Cheese',
         img: './Icons/veg-delight.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 4,
@@ -34,7 +37,8 @@ const pizzas = [
         price: '£12.99',
         ingredients: 'Pepperoni | Sausage | Bacon | Ham | Cheese',
         img: './Icons/meatlover.webp',
-        count: 1
+        count: 1,
+        categoryLogo: 'Icons/pizza-slice.png'
     },
     {
         id: 5,
@@ -43,7 +47,8 @@ const pizzas = [
         price: '£10.99',
         ingredients: 'Ham | Pineapple | Cheese',
         img: './Icons/four.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 6,
@@ -52,7 +57,8 @@ const pizzas = [
         price: '£13.99',
         ingredients: 'Feta cheese | Kalamata olives | Tomatoes | Spinach',
         img: './Icons/med.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 7,
@@ -61,7 +67,8 @@ const pizzas = [
         price: '£14.99',
         ingredients: 'BBQ chicken | Red onions | Bell peppers | Cheese',
         img: './Icons/bbq.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 8,
@@ -70,7 +77,8 @@ const pizzas = [
         price: '£11.99',
         ingredients: 'Spicy sausage | Jalapeños | Onions | Cheese',
         img: './Icons/spicy.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 9,
@@ -79,7 +87,8 @@ const pizzas = [
         price: '£12.99',
         ingredients: 'Mozzarella | Cheddar | Gouda | Parmesan',
         img: './Icons/four.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
     {
         id: 10,
@@ -88,7 +97,8 @@ const pizzas = [
         price: '£12.99',
         ingredients: 'Broccoli | Mushrooms | Black olives | Tomatoes | Cheese',
         img: './Icons/supreme.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/pizza-slice.png'
     },
 ]
 const sides = [
@@ -99,7 +109,8 @@ const sides = [
         price: '£4.99',
         ingredients: 'cheesy garlic bread',
         img: './Icons/garlic-bread.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/french-fries.png'
     },
     {
         id: 12,
@@ -108,7 +119,8 @@ const sides = [
         price: '£6.99',
         ingredients: 'doughballs loaded with cheese',
         img: './Icons/cheese-doughball.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/french-fries.png'
     },
     {
         id: 13,
@@ -117,7 +129,8 @@ const sides = [
         price: '£6.99',
         ingredients: 'doughballs loaded with cheese and pepperoni',
         img: './Icons/pepperoni-doughball.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/french-fries.png'
     },
     {
         id: 14,
@@ -126,7 +139,8 @@ const sides = [
         price: '£5.99',
         ingredients: 'Crispy fries loaded with cheese',
         img: './Icons/lfries-cheese.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/french-fries.png'
     }
     // Add more side items as needed
 ];
@@ -139,7 +153,8 @@ const desserts = [
         price: '£7.99',
         ingredients: 'Rich chocolate brownie with nuts',
         img: './Icons/cookie.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/cake-slice.png'
     },
     {
         id: 22,
@@ -148,7 +163,8 @@ const desserts = [
         price: '£8.99',
         ingredients: 'Classic New York-style cheesecake',
         img: './Icons/cheesecake-icecream.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/cake-slice.png'
     },
     {
         id: 23,
@@ -166,7 +182,8 @@ const desserts = [
         price: '£8.99',
         ingredients: 'Classic New York-style cheesecake',
         img: './Icons/cheesecake-icecream.webp',
-        count: 1
+        count: 1,
+        categoryLogo: './Icons/cake-slice.png'
     },
 
 ];
@@ -178,8 +195,9 @@ const drinks = [
         category: 'Drinks',
         price: '£2.99',
         ingredients: 'Classic cola beverage',
-        img: './Icons/cola.webp',
-        count: 1
+        img: './Icons/coke.webp',
+        count: 1,
+        categoryLogo: './Icons/energy-drink.png'
     },
     {
         id: 32,
@@ -187,8 +205,9 @@ const drinks = [
         category: 'Drinks',
         price: '£3.99',
         ingredients: 'Freshly squeezed orange juice',
-        img: './Icons/orange-juice.webp',
-        count: 1
+        img: './Icons/fanta.webp',
+        count: 1,
+        categoryLogo: './Icons/energy-drink.png'
     },
 
 ];
@@ -229,6 +248,11 @@ window.addEventListener('DOMContentLoaded', () => {
     addedDrinks = updatedMenu.filter((item) => item.category === 'Drinks');
     
     displayFilteredMenu(addedPizzas,pizzas);
+})
+
+const cartNavigator = document.querySelector('.cart');
+cartNavigator.addEventListener('click',()=>{
+    window.location.href = 'cart.html';
 })
 
 let cartItems = [];

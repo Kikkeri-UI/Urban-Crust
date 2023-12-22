@@ -2,6 +2,9 @@
 let cartItems = [];
 let itemCounts = {};
 let addedToCart = [];
+const checkOutBtn = document.querySelector('.checkout-btn');
+
+
 window.addEventListener('DOMContentLoaded', () => {
 
     debugger;
@@ -19,11 +22,20 @@ window.addEventListener('DOMContentLoaded', () => {
         const addedItem = addedToCart.find(item => item.id === id);
         return existingItem ? { ...existingItem } : { ...addedItem };
     });
+    if(cartItems.length === 0){
+        checkOutBtn.disabled = true;
+        checkOutBtn.classList.add()
+    }
     console.log(cartItems);
     displayCartItems(cartItems);
     updateCount();
     displayTotalPrice(cartItems);
 });
+
+const menuNavigator = document.querySelector('.menu');
+menuNavigator.addEventListener('click',()=>{
+    window.location.href = 'menu.html';
+})
 
 function initCartButtons(){
     let deleteBtns = document.querySelectorAll('.delete-img');
@@ -147,9 +159,7 @@ function displayTotalPrice(cartItem) {
     return `<h2>Cart total price: £ ${totalPrice}</h2>`;
 }
 
-function fun(){
-    console.log('clicked')
-}
+
 
 
 

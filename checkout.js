@@ -19,25 +19,31 @@ document.getElementById('checkoutForm').addEventListener('submit', function (eve
     // For example:
      const firstName = document.getElementById('firstName').value;
      const lastName = document.getElementById('lastName').value;
-     console.log(firstName, lastName);
     // ...
 
     // Perform actions like sending data to a server, showing a confirmation message, etc.
     alert('Order placed successfully!');
+    localStorage.clear();
     
 });
 
 function displayCartItems(cartObject){
-    let cartItems = cartObject.map((object)=>{
+    let cartItems = cartObject.map((object,index)=>{
         return `<div class="item-row">
-        <span class="count">${object.count}</span>
-        <span class="title">${object.title}</span>
-        <span class="price">${object.price}</span>
+        <img class="count" src="${object.categoryLogo}"> 
+        <span class="title">${object.count} * ${object.title}</span>
+        <span class="price">£${object.amount}</span>
         </div>`
     });
     cartItems = cartItems.join('');
     cartGrid.innerHTML = cartItems;
 }
+
+let backToCart = document.querySelector('.cart-button');
+
+backToCart.addEventListener('click',()=>{
+    window.location.href = 'cart.html';
+})
 
 // function goToCart(){
 //     window.location.href = cart.html;
