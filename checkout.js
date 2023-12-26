@@ -12,17 +12,14 @@ window.addEventListener('DOMContentLoaded',()=>{
 })
 
 document.getElementById('checkoutForm').addEventListener('submit', function (event) {
-    //event.preventDefault();
-
-    // Implement your logic to handle the form submission
-    // You can retrieve form values using document.getElementById or other methods
-    // For example:
+    
      const firstName = document.getElementById('firstName').value;
      const lastName = document.getElementById('lastName').value;
-    // ...
-
-    // Perform actions like sending data to a server, showing a confirmation message, etc.
+     const email = document.getElementById('email').value;
+     const address = document.getElementById('address').value;
+    debugger;
     alert('Order placed successfully!');
+    window.location.href = 'index.html';
     localStorage.clear();
     
 });
@@ -45,6 +42,3 @@ backToCart.addEventListener('click',()=>{
     window.location.href = 'cart.html';
 })
 
-// function goToCart(){
-//     window.location.href = cart.html;
-// }

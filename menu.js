@@ -209,6 +209,26 @@ const drinks = [
         count: 1,
         categoryLogo: './Icons/energy-drink.png'
     },
+    {
+        id: 32,
+        title: 'Orange Juice',
+        category: 'Drinks',
+        price: '£3.99',
+        ingredients: 'Freshly squeezed orange juice',
+        img: './Icons/fanta.webp',
+        count: 1,
+        categoryLogo: './Icons/energy-drink.png'
+    },
+    {
+        id: 32,
+        title: 'Orange Juice',
+        category: 'Drinks',
+        price: '£3.99',
+        ingredients: 'Freshly squeezed orange juice',
+        img: './Icons/fanta.webp',
+        count: 1,
+        categoryLogo: './Icons/energy-drink.png'
+    },
 
 ];
 
