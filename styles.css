@@ -1,139 +1,123 @@
 /* styles.css */
-/* Add your styling for the header, navigation, and content area */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
 
-  .header{
-    background-color: #333;
-    color: whitesmoke;
-    height: 80px;
-    font-family: Roboto;
-    font-size: 22px;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right:0;
-    left: 0;
-  }
+.header {
+  background-color: #333;
+  color: whitesmoke;
+  height: 80px;
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+}
 
-  .left-section{
-    max-width: 400px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+.left-section {
+  display: flex;
+  align-items: center;
+}
 
-  .logo-img{
-    width: 80px;
-    margin-left: 20px;
-  }
+.logo-img {
+  width: 60px;
+  margin-right: 10px;
+}
 
-  .right-section{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 500px;
-    margin-right: 20px;
-    text-decoration: none;
-  }
+.right-section{
+  display: flex;
+  justify-content: space-around;
+}
 
-  .right-section a {
-    text-decoration: none; 
-    color: inherit;
-    
-  }
-
-  .right-section a:hover{
-    color: red;
-  }
-
-
-  .hero {
-    background-color: black; /* Placeholder for image */
-    background-image: url('Icons/passion.webp');
-    background-size: cover;
-    background-position: center;
-    height: 612px;
-    text-align: center;
-    color: #fff;
-    padding: 4em 0;
-    box-shadow: 0px 4px 8px rgb(63, 63, 63);
-    
-  }
-
-  .hero h1 {
-    font-size: 3em;
-    margin-bottom: 0.5em;
-    backdrop-filter: blur(5px);
-  }
-
-  .hero p {
-    font-size: 1.2em;
-    margin-bottom: 1.5em;
-    backdrop-filter: blur(5px);
-  }
-
-  .hero a{
-    text-decoration: none;
-  }
-
-  .menu-btn{
-    padding: 15px 30px 15px 30px;
-    background-color: #EAEF0A;
-    border-radius: 10px;
-    color: black;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  .menu-btn:hover{
-    background-color: #c4c70f;
-  }
-
-  .contact{
-    height: 300px;
-    text-align: center;
-    background-color: #e0eaef;
-  }
-
-  .contact-info{
-    display: flex;
-    margin-top: 100px;
-    justify-content: center;
-    font-family: Roboto;
-    font-size: 18px;
-    font-weight: 300;
-    color: black;
-  }
-
-  .phone,
-  .email {
-    display: flex;
-    align-items: center;
-    margin: 25px;
-  }
-
-  .telephone,
-  .mail{
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
-  }
-
+.right-section a {
+  text-decoration: none;
+  color: inherit;
+  margin: 20px;
   
+}
 
+.right-section a:hover {
+  color: #e74c3c; /* Change color on hover */
+}
 
+.hero {
+  background: url('Icons/passion.webp') center/cover;
+  height: 612px;
+  text-align: center;
+  color: #fff;
+  padding: 4em 0;
+  box-shadow: 0px 4px 8px rgba(63, 63, 63, 0.5);
+}
 
+.hero-content {
+  backdrop-filter: blur(5px);
+}
 
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
 
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+}
 
+.menu-btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #EAEF0A;
+  border-radius: 10px;
+  color: #333; /* Adjust text color */
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
 
+.menu-btn:hover {
+  background-color: #c4c70f;
+}
 
+.contact {
+  height: 300px;
+  text-align: center;
+  background-color: #e0eaef;
+}
+
+.contact h2 {
+  margin: 0;
+  padding: 10px;
+  font-size: 28px;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust spacing */
+  font-size: 18px;
+  font-weight: 300;
+  color: #333; /* Adjust text color */
+}
+
+.phone,
+.email {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+}
+
+.telephone,
+.mail {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+}
