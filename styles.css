@@ -49,11 +49,13 @@ body {
 
 .hero {
   background: url('Icons/passion.webp') center/cover;
-  height: 612px;
+  height: 80vh;
   text-align: center;
   color: #fff;
   padding: 4em 0;
   box-shadow: 0px 4px 8px rgba(63, 63, 63, 0.5);
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .hero-content {
@@ -68,6 +70,12 @@ body {
 .hero p {
   font-size: 1.2em;
   margin-bottom: 1.5em;
+}
+
+@media (max-width:600px){
+  .hero{
+    width: 100%;
+  }
 }
 
 .menu-btn {
@@ -87,7 +95,7 @@ body {
 }
 
 .contact {
-  height: 300px;
+  height: 20vh;
   text-align: center;
   background-color: #e0eaef;
 }

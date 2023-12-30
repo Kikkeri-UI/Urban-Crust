@@ -25,7 +25,7 @@ const pizzas = [
         title: 'Vegetarian Delight',
         category: 'Pizza',
         price: '£11.99',
-        ingredients: 'Mushrooms | Bell peppers | Onions | Olives | Cheese',
+        ingredients: 'Mushrooms | Peppers | Onions | Olives | Cheese',
         img: './Icons/veg-delight.webp',
         count: 1,
         categoryLogo: './Icons/pizza-slice.png'
@@ -95,7 +95,7 @@ const pizzas = [
         title: 'Veggie Supreme',
         category: 'Pizza',
         price: '£12.99',
-        ingredients: 'Broccoli | Mushrooms | Black olives | Tomatoes | Cheese',
+        ingredients: 'Broccoli | Mushrooms | Black olives | Cheese',
         img: './Icons/supreme.webp',
         count: 1,
         categoryLogo: './Icons/pizza-slice.png'
@@ -419,7 +419,7 @@ function displayMenu(menuItem) {
                     <button class="decrement">-</button>
                 </div>
                 <div class="price">
-                    <h3 id='price-${index}' style="font-family: Grandstander; font-size: 16px; font-weight: 700; margin-left: 40px;">${item.amount ? item.amount : item.price}</h3>
+                    <h3 id='price-${index}'>${item.amount ? item.amount : item.price}</h3>
                 </div>
             </div>
             <button class="cart-btn" data-id="${item.id}">Add to Cart</button>
