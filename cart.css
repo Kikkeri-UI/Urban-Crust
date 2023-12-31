@@ -3,19 +3,134 @@ body{
     padding: 50px;
 }
 
+html{
+    font-size: 16px;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 2rem;
+    /* margin-bottom: 20px; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(58, 57, 57);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(241, 241, 241);
+    z-index: 1;
+}
+
+.logo-section,
+.cart-section {
+    width: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.logo-section{
+    margin-left: 20px;
+}
+
+.logo-img{
+    width: 90px;
+    height: 30px;
+}
+
+.cart-section{
+    margin-right: 10px;
+}
+.cart-img{
+    width: 40px;
+    height: 40px;
+}
+.middle-section{
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    max-width: 400px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    margin-right: 5%;
+}
+
+@media (max-width:700px){
+    .middle-section{
+        font-size: 0.8rem;
+    }
+
+    .menu, .cart{
+        margin: 1%;
+    }
+}
+
+.cart{
+    color: rgb(228, 32, 32);
+    margin-right: 20px;
+
+}
+.menu{
+    opacity: 50%;
+    transition: opacity 1.15s;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.menu:hover{
+    color: red;
+    opacity: 1;;
+    cursor: pointer;
+}
 
 .cart-items-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr;
     column-gap: 20px;
     row-gap: 20px;
+
+    /* @media (max-width: 1000px){
+        grid-template-columns: 1fr;
+    }
+
+    @media (min-width : 1001px){
+        grid-template-columns: 1fr 1fr;
+    } */
+    /* @media (min-width: 1401px) {
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); 
+      } */
+
+      @media (min-width:1401px){
+        grid-template-columns: repeat(1,300px) 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+    @media (max-width: 1400px){
+        grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    }
 }
 
+.cart-items-grid:only-child .container {
+    width: 400px;
+    height: auto;
+  }
+
+ 
+
 .container{
-    display: flex;
+    display: grid;
+    /* grid-template-columns: 30% 1fr; */
     border: 2px solid rgb(37, 37, 37);
     border-radius: 10px;
 }
+@media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr; /* Switch to single-column layout on smaller screens */
+    }
+  }
 .img-container{
     padding: 15px;
     display: flex;
@@ -24,7 +139,9 @@ body{
 .cart-item-img{
     padding: 2.5px;
     border-radius: 2.5px;
-
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .info-container{
@@ -65,77 +182,12 @@ body{
 
 .cart-item-heading{
     font-family: Grandstander;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #030303;
     margin-left: 20px;
 }
 
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 70px;
-    margin-bottom: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgb(58, 57, 57);
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(241, 241, 241);
-    z-index: 1;
-}
-
-.logo-section,
-.cart-section {
-    width: 200px;
-    display: flex;
-    align-items: center;
-}
-
-.logo-section{
-    margin-left: 20px;
-}
-
-.logo-img{
-    width: 90px;
-    height: 30px;
-}
-
-.cart-section{
-    margin-right: 10px;
-}
-.cart-img{
-    width: 40px;
-    height: 40px;
-}
-.middle-section{
-    flex: 1;
-    display: flex;
-    justify-content: space-around;
-    max-width: 400px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: whitesmoke;
-}
-.cart{
-    color: rgb(228, 32, 32);
-    margin-right: 20px;
-
-}
-.menu{
-    opacity: 50%;
-    transition: opacity 1.15s;
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-.menu:hover{
-    color: red;
-    opacity: 1;;
-    cursor: pointer;
-}
 .desc-section{
     flex: 1;
     display: flex;
